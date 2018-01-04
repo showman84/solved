@@ -12,7 +12,6 @@ public class ZigZagConversion {
 //"PINALIGYAIHRNPI"
 
     public String convert(String s, int numRows) {
-
         StringBuilder sb = new StringBuilder();
         int formula = 2 * numRows - 2 ;
         int distance =  formula;
@@ -22,13 +21,15 @@ public class ZigZagConversion {
 
         for (int i =0; i < numRows; i++) {
             int local = i;
+            int localDistance = distance;
             while(local < s.length()) {
-                sb.append(s.charAt(local));
-                if (distance == 0) {
-                    distance = formula;
+                if (localDistance == 0) {
+                    localDistance = formula;
                 }
-                local = local + distance;
-                distance = formula - distance;
+                sb.append(s.charAt(local));
+
+                local = local + localDistance;
+                localDistance = formula - localDistance;
             }
             distance = distance - 2;
         }
