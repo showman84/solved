@@ -4,27 +4,46 @@ package com.company;
 
 public class ReverseNodesInKGroup {
     public ListNode reverseKGroup(ListNode head, int k) {
-
-        int sIndex = 1;
-        ListNode result = head;
-        ListNode lastRerverse = head;
-        ListNode prev = null;
-        while (head != null) {
-            if (sIndex % k == 0) {
-                int operations = 0;
-                while(operations <= k/2) {
-                    ListNode temp = prev;
-                    prev.next = head.next;
-                    head.next = lastRerverse;
-                    operations++;
-                }
-            }
-            prev = head;
-            head = head.next;
-
-            sIndex++;
+        if (head == null || head.next == null || k <= 1) {
+            return head;
         }
-        return result;
+        ListNode dummy = new ListNode(-1);
+        dummy.next = head;
+        int i = 1;
+        ListNode start = dummy;
+        while (head != null) {
+
+            if (i%k == 0){
+                start = reverse(start, head.next);
+                head = start.next;
+            }
+            else {
+                head = head.next;
+            }
+            i++;
+        }
+        return dummy.next;
+    }
+    public ListNode reverse(ListNode begin, ListNode end) {
+
+        ListNode current, previous, next;
+        current = begin.next;
+        previous = begin;
+
+        ListNode first = begin.next;
+
+        while (current != end) {
+            ListNode temp = current.next;
+            current.next = previous;
+
+            previous = current;
+            current = temp;
+        }
+
+        begin.next = previous;
+        first.next = current;
+
+        return first;
     }
 
 
