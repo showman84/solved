@@ -5,23 +5,22 @@ import java.util.HashMap;
 public class minWindow {
 
     public String minWindow(String s, String t) {
-        HashMap<Character,Integer> map = new HashMap();
 
-        for(char c : s.toCharArray()) {
+        HashMap<Character, Integer> map = new HashMap<Character, Integer>();
+        for (char c: s.toCharArray()) {
             map.put(c, 0);
         }
-
-        for(char c : t.toCharArray()) {
+        for (char c: t.toCharArray()) {
             if (map.containsKey(c)) {
-                map.put(c, map.get(c)+1);
+                map.put(c, map.get(c) + 1);
             }
         }
 
-        int counter = t.length(), start = 0, end = 0, minLength = Integer.MAX_VALUE, minStart = 0;
+        int start = 0, end = 0, length = s.length(), counter = t.length(), minLength = Integer.MAX_VALUE, minStart = 0;
 
-        while (end < s.length()) {
+        while (end < length) {
 
-            char c = s.charAt(end);
+            char c = s.charAt(end++);
 
             if (map.get(c) > 0) {
                 counter--;
@@ -29,36 +28,26 @@ public class minWindow {
 
             map.put(c, map.get(c) - 1);
 
-            end++;
-
             while (counter == 0) {
-                if (end - start < minLength) {
+                if(end - start < minLength) {
                     minLength = end - start;
                     minStart = start;
                 }
-                char c2 = s.charAt(start);
-                map.put(c2, map.get(c2) + 1);
-                if (map.get(c2) > 0) {
+
+                c = s.charAt(start++);
+                map.put(c, map.get(c) + 1);
+                if (map.get(c) > 0) {
                     counter++;
                 }
-
-                start++;
             }
-
         }
 
-        if (minLength == Integer.MAX_VALUE) {
-            return "";
-        }
-       return s.substring(minStart, minStart + minLength);
+        return (minLength == Integer.MAX_VALUE) ? "" : s.substring(minStart, minStart + minLength);
 
     }
 
     public static void main(String[] args) {
-
-        int A[] =  {3,4,-1,1};
-
-        System.out.println(new minWindow().minWindow("ADAOBECODDEBANC", "ABC"));
+        System.out.println(new minWindow().minWindow("a", "b"));
 
     }
 }

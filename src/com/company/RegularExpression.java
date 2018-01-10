@@ -4,7 +4,9 @@ public class RegularExpression {
 
     public boolean isMatch(String text, String pattern) {
 
-        if (pattern.isEmpty()) return text.isEmpty();
+        if (pattern.isEmpty()) {
+            return text.isEmpty();
+        }
 
         boolean firstCharMatched = false;
 
@@ -12,13 +14,12 @@ public class RegularExpression {
             firstCharMatched = true;
         }
 
-        if (pattern.length() >= 2  && pattern.charAt(1) == '*') {
-
-            return  (firstCharMatched && isMatch(text.substring(1), pattern)) ||
-                    isMatch(text, pattern.substring(2));
+        if (pattern.length() >= 2 && pattern.charAt(1) == '*') {
+            return (firstCharMatched && isMatch(text.substring(1), pattern) || isMatch(text, pattern.substring(2)));
 
         }
         else {
+
             return firstCharMatched && isMatch(text.substring(1), pattern.substring(1));
         }
 
@@ -36,7 +37,7 @@ public class RegularExpression {
         System.out.println(new RegularExpression().isMatch("ab",".*"));
         System.out.println(new RegularExpression().isMatch("aab","c*a*b"));
         System.out.println(new RegularExpression().isMatch("ab",".*c"));*/
-        System.out.println(new RegularExpression().isMatch("aaa","a*a"));
+        System.out.println(new RegularExpression().isMatch("baa","b*aa"));
 
 
     }
