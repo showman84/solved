@@ -4,7 +4,7 @@ import java.util.*;
 
 public class SymmetricalTree {
 
-   
+
     public boolean isSymmetric(TreeNode root) {
 
         Queue<TreeNode> queue = new LinkedList<>();
