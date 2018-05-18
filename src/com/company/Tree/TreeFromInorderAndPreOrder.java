@@ -61,8 +61,8 @@ public class TreeFromInorderAndPreOrder {
 
 
     public static void main(String[] args) {
-        int preorder [] = new int[]{7,10,4,3,1,2,8,11};
-        int inorder [] = new int[]{4,10,3,1,7,11,8,2};
+        int preorder [] = new int[]{3,9,20,15,7};
+        int inorder [] = new int[]{9,3,15,20,7};
         System.out.println(new TreeFromInorderAndPreOrder().buildTree(preorder, inorder));
     }
 }
