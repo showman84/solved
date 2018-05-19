@@ -1,7 +1,4 @@
 package com.company.Misc;
-
-import java.util.Arrays;
-
 public class CountingStairs {
 
     public int climbStairs(int n) {
@@ -9,7 +6,6 @@ public class CountingStairs {
         if (n == 0 || n == 1 || n == 2) {
             return n;
         }
-        int result = 0;
         int dp[] = new int[n + 1];
         dp[0] = 1;
         dp[1] = 1;
@@ -22,7 +18,6 @@ public class CountingStairs {
 
 
     public static void main(String[] args) {
-
         System.out.println(new CountingStairs().climbStairs(4));
     }
 }
