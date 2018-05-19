@@ -7,21 +7,26 @@ public class SymmetricalTree {
 
     public boolean isSymmetric(TreeNode root) {
 
-        Queue<TreeNode> queue = new LinkedList<>();
-        boolean result = true;
-        TreeNode node = root;
-
-        queue.add(node);
-        while (!queue.isEmpty()) {
-            node =  queue.remove();
-            if (node == null) {
-                break;
-            }
-            System.out.println(node.val);
-            queue.offer(node.left);
-            queue.offer(node.right);
+        if (root == null) {
+            return true;
         }
-        return result;
+        return isSymmetric(root.left, root.right);
+
+    }
+
+    public boolean isSymmetric(TreeNode left, TreeNode right) {
+
+        if (left == null || right == null) {
+            return right == left;
+        }
+        if (left.val != right.val) {
+            return false;
+        }
+        else {
+
+            return isSymmetric(left.left, right.right) && (isSymmetric(left.right, right.left));
+        }
+
     }
 
     public static void main(String[] args) {
